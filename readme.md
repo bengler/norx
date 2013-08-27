@@ -7,7 +7,7 @@
 * Download and install VirtualBox (www.virtualbox.org)
 * Install vagrant, puppet and puppet-line (puppet style checker)
 
-   ``sudo gem install vagrant puppet puppet-lint ruby-augeas --no-ri --no-rdoc``
+   ``sudo gem install vagrant puppet puppet-lint --no-ri --no-rdoc``
 
 ### Install the VM
 ``cd kartverk_vm``
