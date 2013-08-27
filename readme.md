@@ -1,4 +1,4 @@
-# Bengler Kartdata VM
+# Bengler Kartverk VM
 
 ## Installation
 
