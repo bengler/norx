@@ -8,7 +8,8 @@ Vagrant::Config.run do |config|
     '--memory', '2056'
   ]
 
-  ## Add this if you want to share a a folder from the host system!
+  ## Add this if you want to share a a folder from the host system
+  ## Params: Logicial name, guest mount point, host mount point
   #config.vm.share_folder "usbdisk", "/mnt/usbdisk", "/Volumes/ssd_video"
 
   config.vm.provision :shell, :inline => "sudo apt-get update && sudo apt-get install puppet -y"
