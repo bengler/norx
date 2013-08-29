@@ -18,4 +18,4 @@
 
 ### Access the VM
 
-```ssh kartverk@localhost -p 2200``` (password is 'bengler')
+```ssh kartverk@localhost -p 2222``` (password is 'bengler')
