@@ -2,10 +2,11 @@ Vagrant::Config.run do |config|
 	config.vm.box = 'precise64'
   config.vm.box_url = 'http://files.vagrantup.com/precise64.box'
   config.vm.host_name = 'kartverk.bengler.no'
+  config.vm.forward_port 22, 2222
   config.vm.customize [
     'modifyvm', :id,
     '--name', 'kartverk',
-    '--memory', '2056'
+    '--memory', '4128'
   ]
 
   ## Add this if you want to share a a folder from the host system
