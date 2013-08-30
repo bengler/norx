@@ -1,5 +1,9 @@
 #!/bin/bash
 
+GITHUB_ACCESS_TOKEN="a09e2e7b5488f777a79b82edd506e61ccdfcbe43"
+
+exit
+
 # System stuff
 
 ## Set locale first, or Postgresql will get in trouble later on regarding UTF8-encoded databases.
@@ -11,8 +15,9 @@ locale-gen en_US.UTF-8
 ## Increase swap space
 
 if [ ! -f '/home/kartverk/done_swapfile' ]; then
-	# Create swapfile of 10GB with block size 1MB
-	/bin/dd if=/dev/zero of=/swapfile bs=1024 count=10485760
+	echo "Generating swapfile"
+	# Create swapfile of 15GB with block size 1MB
+	/bin/dd if=/dev/zero of=/swapfile bs=1024 count=15728640
 
 	# Set up the swap file
 	/sbin/mkswap /swapfile
@@ -38,14 +43,25 @@ if [ ! -f '/home/kartverk/done_packages' ]; then
 	apt-add-repository -y  ppa:sharpie/postgis-nightly
 	apt-get update
 	apt-get -y install postgresql-9.1-postgis
-	## Install Mapnik
-	add-apt-repository -y ppa:mapnik/v2.2.0
-	apt-get update
-	apt-get -y install libmapnik mapnik-utils python-mapnik
+
+	# ## Install Mapnik - no longer needed, seems like it's inlcuded in Ubuntu standard package
+	# add-apt-repository -y ppa:mapnik/v2.2.0
+	# apt-get update
+	# apt-get -y install libmapnik mapnik-utils python-mapnik
+
 	## Install gdal
 	apt-get -y install libgdal1-1.7.0 libgdal1-dev gdal-bin
-	## Install git and unzip
-	apt-get -y install git unzip
+	## Install tilestache (also includes mapnik 2.2.0)
+	apt-get -y tilestache
+
+	## Install git, unzip and subversion
+	apt-get -y install git unzip subversion
+
+	# Install needed Python packages
+	apt-get install python-pip python-dev
+
+	## Install Python package PIL needed for tilestache
+	pip install PIL
 
 	touch '/home/kartverk/done_packages'
 fi
@@ -83,10 +99,22 @@ if [ ! -f '/home/kartverk/done_dataseed' ]; then
 
 	# Prepare to cook map data
 	cd /home/kartverk
-	sudo -u kartverk git clone https://a09e2e7b5488f777a79b82edd506e61ccdfcbe43@github.com/bengler/kartverk_data_seed
+	sudo -u kartverk git clone "https://$GITHUB_ACCESS_TOKEN@github.com/bengler/kartverk_data_seed"
 	cd /home/kartverk/kartverk_data_seed
 	sudo -u kartverk ./seed.sh kartverk kartverk bengler
 
 	touch '/home/kartverk/done_dataseed'
+
+fi
+
+if [ ! -f '/home/kartverk/done_services' ]; then
+
+	# Set up services that we need running
+	cd /home/kartverk
+	sudo -u kartverk git clone "https://$GITHUB_ACCESS_TOKEN@github.com/bengler/kartverk_vm_services"
+	cd /home/kartverk/kartverk_vm_services
+	./bootstrap.sh
+
+	touch '/home/kartverk/done_services'
 
 fi
