@@ -37,13 +37,15 @@ The disk image tends to grow dynamically out of porportions during import jobs a
 
 	``VBoxManage clonehd ./kartverk/box-disk1.vmdk ./kartverk/clone-box-disk1.vmdk``
 
+* Unattach the old disk, and add the new one to the VM:
+
 	``VBoxManage storageattach kartverk --storagectl "SATA Controller" --port 0 --device 0 --medium none``
 
 	``VBoxManage closemedium disk box-disk1.vmdk``
 
 	``VBoxManage storageattach kartverk --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium clone-box-disk1.vmdk``
 
-* Boot the VM normally via VirtualBox GUI again, in order to fix Vagrant boot hang.
+* Boot the VM normally via VirtualBox GUI again, in order to fix Vagrant boot hang (invalid network configuration).
 
 	``sudo -Rf /var/lib/dhcp/*``
 
