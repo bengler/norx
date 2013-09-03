@@ -37,7 +37,7 @@ The disk image tends to grow dynamically out of porportions during import jobs a
 
 	``VBoxManage clonehd ./kartverk/box-disk1.vmdk ./kartverk/clone-box-disk1.vmdk``
 
-* Unattach the old disk, and add the new one to the VM:
+* Detach the old disk, and attach the new one to the VM:
 
 	``VBoxManage storageattach kartverk --storagectl "SATA Controller" --port 0 --device 0 --medium none``
 
@@ -53,4 +53,4 @@ The disk image tends to grow dynamically out of porportions during import jobs a
 
 * Power off the VM
 
-* Vagrant should now be able to boot the new shrinked image normally via ``vagrant up``.
+* Vagrant should now be able to boot the new shrinked disk image normally via ``vagrant up``.
