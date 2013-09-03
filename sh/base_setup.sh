@@ -2,8 +2,6 @@
 
 GITHUB_ACCESS_TOKEN="a09e2e7b5488f777a79b82edd506e61ccdfcbe43"
 
-exit
-
 # System stuff
 
 ## Set locale first, or Postgresql will get in trouble later on regarding UTF8-encoded databases.
