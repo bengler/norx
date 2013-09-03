@@ -1,8 +1,9 @@
 Vagrant::Config.run do |config|
 	config.vm.box = 'precise64'
   config.vm.box_url = 'http://files.vagrantup.com/precise64.box'
-  config.vm.host_name = 'kartverk.bengler.no'
-  config.vm.forward_port 22, 2222
+  config.vm.host_name = 'kartverk.local'
+  config.vm.forward_port 22, 2222 # SSH
+  config.vm.forward_port 3001, 3001 # TileStache
   config.vm.customize [
     'modifyvm', :id,
     '--name', 'kartverk',
