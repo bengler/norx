@@ -46,6 +46,9 @@ The disk image tends to grow dynamically out of porportions during import jobs a
 * Boot the VM normally via VirtualBox GUI again, in order to fix Vagrant boot hang.
 
 	``sudo -Rf /var/lib/dhcp/*``
+
 	``sudo halt``
 
-* Vagrant should now be able to boot the new shrinked image normally.
+* Power off the VM
+
+* Vagrant should now be able to boot the new shrinked image normally via ``vagrant up``.
