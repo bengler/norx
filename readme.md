@@ -23,7 +23,7 @@
 
 ### How to shrink the VM size
 
-The disk image tends to grow dynamically out of porportions during import jobs and other usage.
+The disk image tends to grow dynamically out of porportions during import jobs and other I/O heavy usage.
 
 * Boot into Recovery Mode via Virtualbox's GUI and run:
 
