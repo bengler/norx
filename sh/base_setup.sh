@@ -10,37 +10,45 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 locale-gen en_US.UTF-8
 
-if [ ! -f '/home/kartverk/done_packages' ]; then
+if [ ! -f '/home/kartverk/.done_packages' ]; then
 	echo  "Installing needed packages to handle map data"
 	# Packages
+
+	apt-add-repository -y ppa:sharpie/for-science
+	apt-add-repository -y  ppa:sharpie/postgis-nightly
+	add-apt-repository -y ppa:mapnik/nightly-2.0
+	add-apt-repository -y ppa:chris-lea/node.js
+
+	apt-get update
 
 	## Install postgreqsql database
 	apt-get -y install postgresql-9.1
 	## Install PostGIS 2.1
-	apt-get -y install python-software-properties
-	apt-add-repository -y ppa:sharpie/for-science
-	apt-add-repository -y  ppa:sharpie/postgis-nightly
-	apt-get update
 	apt-get -y install postgresql-9.1-postgis
 
 	## Install gdal
 	apt-get -y install libgdal1-1.7.0 libgdal1-dev gdal-bin
-	## Install tilestache (also includes mapnik 2.2.0)
-	apt-get -y tilestache
+
+	# Install mapnik
+	sudo apt-get -y install libmapnik2-2.0 libmapnik2-dev
 
 	## Install git, unzip, subversion and zerofree
 	apt-get -y install git unzip subversion zerofree
 
 	# Install needed Python packages
-	apt-get install python-pip python-dev
+	apt-get install -y libboost-python-dev python-pip python-dev
 
-	## Install Python package pillow needed for tilestache
-	pip install pillow
+	## Install node
+	apt-get -y install nodejs
 
-	touch '/home/kartverk/done_packages'
+	# Install python modules
+	apt-get -y install python-software-properties
+	pip install pillow TileStache pyproj
+
+	sudo -u kartverk touch '/home/kartverk/.done_packages'
 fi
 
-if [ ! -f '/home/kartverk/done_postgres' ]; then
+if [ ! -f '/home/kartverk/.done_postgres' ]; then
 	echo  "Setting up database"
 	# Postgres/PostGIS setup
 
@@ -59,13 +67,16 @@ if [ ! -f '/home/kartverk/done_postgres' ]; then
 
 	echo  "\t * Creating user 'kartverk' with password 'bengler'"
 	## Create kartverk user, role and database
+	sudo -u postgres psql -c "CREATE ROLE root LOGIN INHERIT CREATEDB;"
+	sudo -u postgres psql -c "ALTER USER root WITH PASSWORD 'bengler';"
+
 	sudo -u postgres psql -c "CREATE ROLE kartverk LOGIN INHERIT CREATEDB;"
 	sudo -u postgres psql -c "ALTER USER kartverk WITH PASSWORD 'bengler';"
 	#sudo -u postgres psql -c "GRANT kartverk TO kartverk;"
 	echo  "\t * Creating database 'kartverk'"
 	sudo -u kartverk createdb -O kartverk -E UTF8 -T template_postgis2 kartverk
 
-	touch '/home/kartverk/done_postgres'
+	sudo -u kartverk touch '/home/kartverk/.done_postgres'
 
 fi
 
@@ -74,7 +85,7 @@ echo  "Setting up GitHub user to fetch additional code"
 git config --global user.name "Tilde Nielsen" # Bengler's test user
 git config --global user.email tildeniels1@gmail.com
 
-if [ ! -f '/home/kartverk/done_dataseed' ]; then
+if [ ! -f '/home/kartverk/.done_dataseed' ]; then
 	echo  "Seeding map data. This will take a very long time!"
 	echo "\t * Generating and activating humongous (25 GB) swapfile needed to parse BIG GeoJSON files"
 
@@ -101,19 +112,19 @@ if [ ! -f '/home/kartverk/done_dataseed' ]; then
 	echo "\t * Deactivatin and removing humongous swap file"
 	swapoff /swapfile
 	rm -rf /swapfile
-	touch '/home/kartverk/done_dataseed'
+	sudo -u kartverk touch '/home/kartverk/.done_dataseed'
 	echo "\t * Seed done!"
 fi
 
-if [ ! -f '/home/kartverk/done_services' ]; then
+if [ ! -f '/home/kartverk/.done_services' ]; then
 	echo  "Setting up map services to run locally"
 	# Set up services that we need running
 	cd /home/kartverk
 	echo  "\t * Fetching service code from GitHub"
 	sudo -u kartverk git clone "https://$GITHUB_ACCESS_TOKEN@github.com/bengler/kartverk_vm_services"
 	cd /home/kartverk/kartverk_vm_services
-	./bootstrap.sh
+	sudo -u kartverk ./bootstrap.sh
 
-	touch '/home/kartverk/done_services'
+	sudo -u kartverk touch '/home/kartverk/.done_services'
 
 fi
