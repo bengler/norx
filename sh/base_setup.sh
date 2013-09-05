@@ -13,10 +13,12 @@ locale-gen en_US.UTF-8
 if [ ! -f '/home/kartverk/.done_packages' ]; then
 	echo  "Installing needed packages to handle map data"
 
+	apt-get -y install build-essential
+
 	# Add some repositories
 	apt-add-repository -y ppa:sharpie/for-science
 	apt-add-repository -y  ppa:sharpie/postgis-nightly
-	add-apt-repository -y ppa:mapnik/nightly-2.0
+	add-apt-repository -y ppa:mapnik/v2.1.0sudo apt-get install libmapnik mapnik-utils python-mapnik
 	add-apt-repository -y ppa:chris-lea/node.js
 
 	# Update package list for new repos.
@@ -31,7 +33,7 @@ if [ ! -f '/home/kartverk/.done_packages' ]; then
 	apt-get -y install libgdal1-1.7.0 libgdal1-dev gdal-bin
 
 	# Install mapnik
-	sudo apt-get -y install libmapnik2-2.0 libmapnik2-dev
+	sudo apt-get -y install libmapnik mapnik-utils python-mapnik libmapnik-dev
 
 	## Install git, unzip, subversion, zerofree and node
 	apt-get -y install git unzip subversion zerofree nodejs
@@ -41,7 +43,7 @@ if [ ! -f '/home/kartverk/.done_packages' ]; then
 
 	# Install python modules
 	apt-get -y install python-software-properties
-	pip install pillow TileStache pyproj
+	pip install pillow TileStache pyproj mapnik2
 
 	sudo -u kartverk touch '/home/kartverk/.done_packages'
 fi
