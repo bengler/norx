@@ -40,6 +40,8 @@ If you would rather just grab a prepopulated VM you should find a download link 
 
 ``vagrant up`` (this will take some time - grab a coffee or a night's sleep)
 
+When it's done, you're ready to talk Norx.
+
 ### Browse a map!
 
 ```http://127.0.0.1:3000```
