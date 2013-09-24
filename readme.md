@@ -38,16 +38,23 @@ If you would rather just grab a prepopulated VM you should find a download link 
 
 ``cd kartverk_vm``
 
-``vagrant up`` (this will take some time - grab a coffee)
+``vagrant up`` (this will take some time - grab a coffee or a night's sleep)
 
-### Access the VM
+### Browse a map!
+
+```http://127.0.0.1:3000```
+
+### Log in to the VM
 
 ```ssh kartverk@localhost -p 2222``` (password is 'bengler')
 
+## Config paths
+
+### PK sentrale pather kan du klinke inn her
 
 ### How to shrink the VM size
 
-The disk image tends to grow dynamically out of porportions during import jobs and other I/O heavy usage.
+The disk image tends to grow dynamically out of all proportion during import jobs and other I/O heavy activity.
 
 * Boot into Recovery Mode via Virtualbox's GUI and run:
 
@@ -77,4 +84,4 @@ The disk image tends to grow dynamically out of porportions during import jobs a
 
 * Power off the VM
 
-* Vagrant should now be able to boot the new shrinked disk image normally via ``vagrant up``.
+* Vagrant should now be able to boot the newly shrunken disk image normally via ``vagrant up``.
