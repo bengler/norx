@@ -42,15 +42,11 @@ When it's done, you're ready to talk Norx.
 
 ### Browse a map!
 
-
 ```http://127.0.0.1:3000```
-
 
 ### Log in to the VM
 
-
 ```ssh kartverk@localhost -p 2222``` (password is 'bengler')
-
 
 ## Config paths
 
