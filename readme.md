@@ -4,6 +4,8 @@ A Virtual Machine with everything you need to work with the CCBY licensed datase
 
 If you would rather just grab a prepopulated VM you should find a download link on our [project page](http://bengler.no/norx)
 
+WARNING: This is still work in progress, it will be ready for use monday 2013-09.30.
+
 ## Contents
 
 ### Data
