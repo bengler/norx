@@ -4,8 +4,6 @@ A Virtual Machine with everything you need to work with the CCBY licensed datase
 
 If you would rather just grab a prepopulated VM you should find a download link on our [project page](http://bengler.no/norx)
 
-WARNING: This is still work in progress, it will be ready for use monday 2013-09.30.
-
 ## Contents
 
 ### Data
@@ -13,6 +11,7 @@ WARNING: This is still work in progress, it will be ready for use monday 2013-09
 * The geometry in the N50 dataset
 * Sentralt Stedsnavns Register (SSR) – Placenames
 * 10m x 10m elevation data
+* Terrain layers designed by Bengler
 
 ### Tools
 
@@ -21,22 +20,32 @@ WARNING: This is still work in progress, it will be ready for use monday 2013-09
 * OGR / GDAL
 * Mapnik
 * Tilestache
-* HAProxy
 * Elastic Search
 
 ## Installation
 
+When built from scratch, the built machine expands itself with code from the following reposetories from Bengler (github.com/bengler):
+
+* norx_data (seeding data from Statens Kartverk)
+* norx_services (TileStache and Elastic Search index for places)
+* norx_leaflet (A simple demo app run locally to confirm that the installation went OK)
+
 ### Prerequisites
 * Optional: If on Mac, install Homebrew (http://brew.sh/)
-* Download and install VirtualBox (www.virtualbox.org)
+* Download and install VirtualBox (www.virtualbox.org). 
+
+If you don't want to install NORX to the default Virtual Box's image folder, make sure you set another default location for the VMs in VirtualBox's preferences.
+
+This VM will grow pretty huge when it's completely built from scratch, so have at least 70 GB of free disk space before proceeding!
+
 * Install vagrant, puppet and puppet-line (puppet style checker) gems:
    ``sudo gem install vagrant puppet puppet-lint vagrant-vbguest --no-ri --no-rdoc``
 
 ### Install the VM
 
-``git clone https://github.com/bengler/kartverk_vm``
+``git clone https://github.com/bengler/norx``
 
-``cd kartverk_vm``
+``cd norx``
 
 ``vagrant up`` (this will take some time - grab a coffee or a night's sleep)
 
@@ -46,45 +55,53 @@ When it's done, you're ready to talk Norx.
 
 ``http://127.0.0.1:3000``
 
+### Log into and use the VM
 
-### Log in to the VM
+``ssh norx@localhost -p 2222`` (password is 'bengler')
 
-``ssh kartverk@localhost -p 2222`` (password is 'bengler')
+
+## Management via Vagrant
+
+If you do modifications to the build scripts.
+
+### Starting up
+
+``vagrant up``
+
+
+### Reloading the VM with a new configuration:
+
+``vagrant reload``
+
+
+### Shutting it down
+
+``vagrant suspend``
+
 
 ## Config paths
 
-### PK sentrale pather kan du klinke inn her
+The VM runs two main applications, TileStache and a simple Leaflet application working on the internal datasets.
 
-### How to shrink the VM size
+### Tilestache:
 
-The disk image tends to grow dynamically out of all proportion during import jobs and other I/O heavy activity.
+Stop and start with ``sudo /etc/init.d/tilestache restart``
 
-* Boot into Recovery Mode via Virtualbox's GUI and run:
+Have a look at ``/home/norx/services/tilestache/tilestache.cfg`` for configuration of the worker.
 
-	``sudo zerofree -v /dev/mapper/precise64-root``
+### Mapnik files to Tilestache
 
-	``sudo halt``
+Check out our repo for designing layers with TileMill:
 
-* Poweroff the VM
+https://github.com/bengler/norx_tilemill_simple
 
-* Clone the disk:
+Mapnik XML files are put under: ``/home/norx/services/tilestache/*.xml``
 
-	``VBoxManage clonehd ./kartverk/box-disk1.vmdk ./kartverk/clone-box-disk1.vmdk``
+### The Leaflet map serving application (Node JS):
 
-* Detach the old disk, and attach the new one to the VM:
+``/home/norx/services/leaflet/app.json``
 
-	``VBoxManage storageattach kartverk --storagectl "SATA Controller" --port 0 --device 0 --medium none``
+## More information
 
-	``VBoxManage closemedium disk box-disk1.vmdk``
+Please refer to the markdown under /docs, http://bengler.no/norx or http://github.com/bengler/norx
 
-	``VBoxManage storageattach kartverk --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium clone-box-disk1.vmdk``
-
-* Boot the VM normally via VirtualBox GUI again, in order to fix Vagrant boot hang (invalid network configuration).
-
-	``sudo -Rf /var/lib/dhcp/*``
-
-	``sudo halt``
-
-* Power off the VM
-
-* Vagrant should now be able to boot the newly shrunken disk image normally via ``vagrant up``.
