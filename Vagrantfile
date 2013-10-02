@@ -32,6 +32,10 @@ Vagrant::Config.run do |config|
 		sh.path = "./sh/base_setup.sh"
 	end
 
+	config.vm.provision :shell do |sh|
+		sh.path = "./sh/update.sh"
+	end
+
 	## Add this if you want to share a a folder from the host system
 	## Params: Logicial name, guest mount point, host mount point
 	#config.vm.share_folder "usbdisk", "/mnt/usbdisk", "/Volumes/map_data"
