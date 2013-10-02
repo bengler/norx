@@ -14,10 +14,11 @@ If you would rather just grab a prepopulated VM you should find a download link 
 ### Data
 
 * The geometry in the N50 dataset
-* Sentralt Stedsnavns Register (SSR) – Placenames
+* Sentralt Stedsnavns Register (SSR) – Placenames and geoposition
 * Administrative borders for counties, municipalities, etc.
-* 10m x 10m elevation data
+* 10m x 10m elevation data (GeoTIFF) converted to UTM33 for whole Norway
 * Terrain layers designed by Bengler
+* An example index for hooking up Elastic Search
 
 ### Tools
 
