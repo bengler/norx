@@ -6,6 +6,10 @@ If you would rather just grab a prepopulated VM you should find a download link 
 
 ## Contents
 
+### Base setup
+
+A vanilla Ubuntu Precise 64 base image from [vagrantup.com](http://files.vagrantup.com/precise64.box) with Puppet management.
+
 ### Data
 
 * The geometry in the N50 dataset
@@ -22,17 +26,15 @@ If you would rather just grab a prepopulated VM you should find a download link 
 * Mapnik
 * Tilestache
 * Elastic Search
-
-### Applications
-* A demo Leaflet node app (Norx Leaflet)
+* A simple Leaflet/node-app for checking out the data
 
 ## Installation
 
 ### Prerequisites
-* Optional: If on Mac, install Homebrew (http://brew.sh/)
-* Download and install VirtualBox (www.virtualbox.org). 
+* Optional: If on Mac, install [Homebrew](http://brew.sh/)
+* Download and install [VirtualBox](www.virtualbox.org). 
 
-If you don't want to install NORX to the default Virtual Box's image folder, make sure you set another default location for the VMs in VirtualBox's preferences. Having your virtualboxes on a USB3 SD disk is neat.
+If you don't want to install NORX to the default Virtual Box's image folder, make sure you set another default location for the VMs in VirtualBox's preferences. Having your box on a USB3 SD disk is neat!
 
 * Install vagrant, puppet and puppet-lint (puppet style checker) Ruby gems:
    ``sudo gem install vagrant puppet puppet-lint vagrant-vbguest --no-ri --no-rdoc``
@@ -43,7 +45,7 @@ If you don't want to install NORX to the default Virtual Box's image folder, mak
 
 ``cd norx``
 
-``vagrant up`` (this will take some time - grab a coffee or a night's sleep)
+``vagrant up``
 
 When it's done, you're ready to talk Norx.
 
@@ -106,11 +108,11 @@ When built from scratch, Norx will expand itself to include :
 
 The disk image will grow pretty huge especially during seeding with norx_data, so have at least 80 GB of free disk space first!
 
-You'll see the different build steps under /sh/base_setup.sh which is started by Vagrant when it got a shell on your virtual machine.
+The complete build and seed will take a couple of hours++, all depending on your internet connection and hardware.
 
+You may see what's going on in [``Vagrantfile``](https://github.com/bengler/norx/blob/master/Vagrantfile) and [``base_setup.sh``](https://github.com/bengler/norx/blob/master/sh/base_setup.sh)
 
 ## More info
 Please refer to [the project page](http://bengler.no/norx) or the [wiki](https://github.com/bengler/norx/wiki)
 
 You may also use our [issue tracker](https://github.com/bengler/norx/issues)
-
