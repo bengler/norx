@@ -9,15 +9,15 @@ if [ ! -f '/home/norx/.done_packages' ]; then
 
  		echo  "Installing needed packages"
 
+		apt-get -y install python-software-properties build-essentials
+
 		# Add some repositories
 		apt-add-repository -y ppa:sharpie/for-science
-		apt-add-repository -y  ppa:sharpie/postgis-nightly
+		apt-add-repository -y ppa:sharpie/postgis-nightly
 		add-apt-repository -y ppa:mapnik/v2.1.0
 		add-apt-repository -y ppa:chris-lea/node.js
 
 		apt-get update
-
-		apt-get -y install build-essential python-software-properties
 
 		## Install postgreqsql database
 		apt-get -y install postgresql-9.1
