@@ -114,7 +114,7 @@ if [ ! -f "$hidden_dir/.done_dataseed" ]; then
 
 	# Create swapfile of 30GB with block size 1MB
 	dd if=/dev/zero of=/swapfile bs=1024 count=31457280
-
+1
 	# Set up the swap file
 	mkswap /swapfile
 
