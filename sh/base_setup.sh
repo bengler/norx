@@ -9,7 +9,7 @@ if [ ! -f '/home/norx/.done_packages' ]; then
 
  		echo  "Installing needed packages"
 
-		apt-get -y install python-software-properties build-essentials
+		apt-get -y install python-software-properties build-essential
 
 		# Add some repositories
 		apt-add-repository -y ppa:sharpie/for-science
