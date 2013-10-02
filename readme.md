@@ -60,21 +60,23 @@ When it's done, you're ready to talk Norx.
 
 ## Management via Vagrant
 
-If you do modifications to the build scripts.
-
-### Starting up
+#### Starting up
 
 ``vagrant up``
 
 
-### Reloading the VM with a new configuration:
+#### Reloading the VM with a new configuration:
 
 ``vagrant reload``
 
 
-### Shutting it down
+#### Pausing
 
 ``vagrant suspend``
+
+#### Shutting it down
+
+``vagrant halt``
 
 
 ## Config paths
