@@ -26,54 +26,54 @@ fi
 
 if [ ! -f "$hidden_dir/.done_packages" ]; then
 
- 		echo  "Installing needed packages"
+	echo  "Installing needed packages"
 
-		apt-get -y install python-software-properties build-essential
+	apt-get -y install python-software-properties build-essential
 
-		# Add some repositories
-		apt-add-repository -y ppa:sharpie/postgis-nightly
-		add-apt-repository -y ppa:mapnik/v2.1.0
-		add-apt-repository -y ppa:chris-lea/node.js
-		add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
+	# Add some repositories
+	apt-add-repository -y ppa:sharpie/postgis-nightly
+	add-apt-repository -y ppa:mapnik/v2.1.0
+	add-apt-repository -y ppa:chris-lea/node.js
+	add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
 
-		apt-get update
+	apt-get update
 
-		## Install postgreqsql database
-		apt-get -y install postgresql-9.1
+	## Install postgreqsql database
+	apt-get -y install postgresql-9.1
 
-		## Install PostGIS 2.1
-		apt-get -y install postgresql-9.1-postgis-2.0
+	## Install PostGIS 2.1
+	apt-get -y install postgresql-9.1-postgis-2.0
 
-		## Install gdal
-		apt-get -y install libgdal1h libgdal-dev gdal-bin
+	## Install gdal
+	apt-get -y install libgdal1h libgdal-dev gdal-bin
 
-		# Install mapnik
-		sudo apt-get -y install libmapnik mapnik-utils python-mapnik libmapnik-dev
+	# Install mapnik
+	sudo apt-get -y install libmapnik mapnik-utils python-mapnik libmapnik-dev
 
-		## Install some tools needed to install services
-		apt-get -y install git subversion unzip zerofree curl
+	## Install some tools needed to install services
+	apt-get -y install git subversion unzip zerofree curl
 
-		## Install node
-		apt-get -y install nodejs
+	## Install node
+	apt-get -y install nodejs
 
-		# Install needed Python packages
-		apt-get install -y libboost-python-dev python-pip python-dev
+	# Install needed Python packages
+	apt-get install -y libboost-python-dev python-pip python-dev
 
-		# Install python modules
-		pip install pillow TileStache pyproj
+	# Install python modules
+	pip install pillow TileStache pyproj
 
-		echo  "Installing Elastic Search server with JDBC-bindings for Postgres"
+	echo  "Installing Elastic Search server with JDBC-bindings for Postgres"
 
-		apt-get install -y openjdk-7-jre-headless
-		wget --quiet https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.3.deb -O /tmp/elasticsearch-0.90.3.deb
-		dpkg -i /tmp/elasticsearch-0.90.3.deb
-		cd /usr/share/elasticsearch/bin
-		./plugin -url http://bit.ly/19iNdvZ -install river-jdbc
-		cd ..
-		cd plugins/river-jdbc
-		wget --quiet http://jdbc.postgresql.org/download/postgresql-9.1-903.jdbc4.jar
+	apt-get install -y openjdk-7-jre-headless
+	wget --quiet https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.3.deb -O /tmp/elasticsearch-0.90.3.deb
+	dpkg -i /tmp/elasticsearch-0.90.3.deb
+	cd /usr/share/elasticsearch/bin
+	./plugin -url http://bit.ly/19iNdvZ -install river-jdbc
+	cd ..
+	cd plugins/river-jdbc
+	wget --quiet http://jdbc.postgresql.org/download/postgresql-9.1-903.jdbc4.jar
 
-		touch "$hidden_dir/.done_packages"
+	touch "$hidden_dir/.done_packages"
 fi
 
 
@@ -114,7 +114,7 @@ if [ ! -f "$hidden_dir/.done_dataseed" ]; then
 
 	# Create swapfile of 30GB with block size 1MB
 	dd if=/dev/zero of=/swapfile bs=1024 count=31457280
-1
+
 	# Set up the swap file
 	mkswap /swapfile
 
