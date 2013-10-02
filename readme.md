@@ -109,17 +109,17 @@ Mapnik XML files are put under: ``/home/norx/services/tilestache/*.xml``
 
 When built from scratch, Norx will expand itself to include :
 
-* norx_data (for seeding data from Statens Kartverk into the VM)
-* norx_services (TileStache, Elastic Search)
-* norx_leaflet (a simple node application for browsing the built data)
+* [norx_data](https://github.com/bengler/norx_data) for seeding data from Statens Kartverk into the VM
+* [norx_services](https://github.com/bengler/norx_services) - TileStache, Elastic Search and node setup
+* [norx_leaflet](https://github.com/bengler/norx_leaflet) - a simple node application for browsing the built data
 
-The disk image will grow pretty huge especially during seeding with norx_data, so have at least 80 GB of free disk space first!
+The disk image will grow pretty huge especially during seeding the terrain data from Statens Kartverk, so have at least 80 GB of free disk space!
 
 The complete build and seed will take a couple of hours++, all depending on your internet connection and hardware.
 
-You may see what's going on in [``Vagrantfile``](https://github.com/bengler/norx/blob/master/Vagrantfile) and [``base_setup.sh``](https://github.com/bengler/norx/blob/master/sh/base_setup.sh)
+You may see what's going on in [``Vagrantfile``](https://github.com/bengler/norx/blob/master/Vagrantfile) and [``base_setup.sh``](https://github.com/bengler/norx/blob/master/sh/base_setup.sh) - and the above mentioned reposetories.
 
 ## More info
 Please refer to [the project page](http://bengler.no/norx) or the [wiki](https://github.com/bengler/norx/wiki)
 
-You may also use our [issue tracker](https://github.com/bengler/norx/issues)
+You may also use our [issue tracker](https://github.com/bengler/norx/issues) and contribute to this code.
