@@ -1,5 +1,5 @@
 # Norx - Norway in a Box
-
+![norx](http://bengler.no/assets/landscape.jpg)
 A Virtual Machine with everything you need to work with the CCBY licensed datasets from the Norwegian Mapping Authority – Statens Kartverk. The vagrant script sets up a VM for you, seeds it with fresh data from the authorities, imports it into a database and sets up services for tile rendering.
 
 If you would rather just grab a prepopulated VM you should find a download link on our [project page](http://bengler.no/norx)
