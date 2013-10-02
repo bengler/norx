@@ -82,6 +82,10 @@ When it's done, you're ready to talk Norx.
 
 ## Config paths
 
+### The VM itself (host/guest config)
+
+See [``Vagrantfile``](https://github.com/bengler/norx/blob/master/Vagrantfile)
+
 ### Tilestache:
 
 Stop and start with ``sudo /etc/init.d/tilestache restart``
