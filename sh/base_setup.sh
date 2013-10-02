@@ -17,7 +17,7 @@ if [ ! -f '/home/norx/.done_packages' ]; then
 
 		apt-get update
 
-		apt-get -y install puppet build-essential python-software-properties
+		apt-get -y install build-essential python-software-properties
 
 		## Install postgreqsql database
 		apt-get -y install postgresql-9.1
@@ -45,13 +45,13 @@ if [ ! -f '/home/norx/.done_packages' ]; then
 		echo  "Installing Elastic Search server with JDBC-bindings for Postgres"
 
 		apt-get install -y openjdk-7-jre-headless
-		wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.3.deb -O /tmp/elasticsearch-0.90.3.deb
+		wget --quiet https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.3.deb -O /tmp/elasticsearch-0.90.3.deb
 		dpkg -i /tmp/elasticsearch-0.90.3.deb
 		cd /usr/share/elasticsearch/bin
 		./plugin -url http://bit.ly/19iNdvZ -install river-jdbc
 		cd ..
 		cd plugins/river-jdbc
-		wget http://jdbc.postgresql.org/download/postgresql-9.1-903.jdbc4.jar
+		wget --quiet http://jdbc.postgresql.org/download/postgresql-9.1-903.jdbc4.jar
 
 		# Set locale to when user logs into the VM through SSH
 		echo "Setting default locale for norx account"
@@ -63,8 +63,6 @@ if [ ! -f '/home/norx/.done_packages' ]; then
 
 		sudo -u norx touch '/home/norx/.done_packages'
 fi
-
-echo  "Setting up GitHub user to fetch additional code"
 
 if [ ! -f '/home/norx/.done_dataseed' ]; then
 	echo  "Seeding map data. This will take a very long time!"
