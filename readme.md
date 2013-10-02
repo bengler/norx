@@ -10,6 +10,7 @@ If you would rather just grab a prepopulated VM you should find a download link 
 
 * The geometry in the N50 dataset
 * Sentralt Stedsnavns Register (SSR) – Placenames
+* Administrative borders for counties, municipalities, etc.
 * 10m x 10m elevation data
 * Terrain layers designed by Bengler
 
@@ -22,23 +23,18 @@ If you would rather just grab a prepopulated VM you should find a download link 
 * Tilestache
 * Elastic Search
 
+### Applications
+* A demo Leaflet node app (Norx Leaflet)
+
 ## Installation
-
-When built from scratch, the built machine expands itself with code from the following reposetories from Bengler (github.com/bengler):
-
-* norx_data (seeding data from Statens Kartverk)
-* norx_services (TileStache and Elastic Search index for places)
-* norx_leaflet (A simple demo app run locally to confirm that the installation went OK)
 
 ### Prerequisites
 * Optional: If on Mac, install Homebrew (http://brew.sh/)
 * Download and install VirtualBox (www.virtualbox.org). 
 
-If you don't want to install NORX to the default Virtual Box's image folder, make sure you set another default location for the VMs in VirtualBox's preferences.
+If you don't want to install NORX to the default Virtual Box's image folder, make sure you set another default location for the VMs in VirtualBox's preferences. Having your virtualboxes on a USB3 SD disk is neat.
 
-This VM will grow pretty huge when it's completely built from scratch, so have at least 70 GB of free disk space before proceeding!
-
-* Install vagrant, puppet and puppet-line (puppet style checker) gems:
+* Install vagrant, puppet and puppet-lint (puppet style checker) Ruby gems:
    ``sudo gem install vagrant puppet puppet-lint vagrant-vbguest --no-ri --no-rdoc``
 
 ### Install the VM
@@ -81,8 +77,6 @@ If you do modifications to the build scripts.
 
 ## Config paths
 
-The VM runs two main applications, TileStache and a simple Leaflet application working on the internal datasets.
-
 ### Tilestache:
 
 Stop and start with ``sudo /etc/init.d/tilestache restart``
@@ -101,7 +95,22 @@ Mapnik XML files are put under: ``/home/norx/services/tilestache/*.xml``
 
 ``/home/norx/services/leaflet/app.json``
 
-## More information
 
-Please refer to the markdown under /docs, http://bengler.no/norx or http://github.com/bengler/norx
+## Building and seeding the VM from scratch
+
+When built from scratch, Norx will expand itself to include :
+
+* norx_data (for seeding data from Statens Kartverk into the VM)
+* norx_services (TileStache, Elastic Search)
+* norx_leaflet (a simple node application for browsing the built data)
+
+The disk image will grow pretty huge especially during seeding with norx_data, so have at least 80 GB of free disk space first!
+
+You'll see the different build steps under /sh/base_setup.sh which is started by Vagrant when it got a shell on your virtual machine.
+
+
+## More info
+Please refer to [the project page](http://bengler.no/norx) or the [wiki](http://github.com/norx/wiki)
+
+You may also use our [https://github.com/bengler/norx/issues](issue tracker)
 
