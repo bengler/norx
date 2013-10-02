@@ -119,6 +119,9 @@ if [ ! -f '/home/norx/.done_postgres' ]; then
 	sudo -u postgres psql -d template_postgis2 -c "GRANT ALL ON spatial_ref_sys TO PUBLIC;"
 
 	echo  "    * Creating Postgres user 'norx' with password 'bengler'"
+  sudo -u postgres psql -c "CREATE ROLE root LOGIN INHERIT CREATEDB;"
+  sudo -u postgres psql -c "ALTER USER root WITH PASSWORD 'bengler';"
+
 	sudo -u postgres psql -c "CREATE ROLE norx LOGIN INHERIT CREATEDB;"
 	sudo -u postgres psql -c "ALTER USER norx WITH PASSWORD 'bengler';"
 
@@ -128,7 +131,6 @@ if [ ! -f '/home/norx/.done_postgres' ]; then
 	sudo -u norx touch '/home/norx/.done_postgres'
 
 fi
-
 
 if [ ! -f '/home/norx/.done_services' ]; then
 
