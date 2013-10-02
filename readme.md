@@ -112,5 +112,5 @@ You'll see the different build steps under /sh/base_setup.sh which is started by
 ## More info
 Please refer to [the project page](http://bengler.no/norx) or the [wiki](http://github.com/norx/wiki)
 
-You may also use our [https://github.com/bengler/norx/issues](issue tracker)
+You may also use our [issue tracker](https://github.com/bengler/norx/issues)
 
