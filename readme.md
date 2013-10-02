@@ -8,7 +8,8 @@ If you would rather just grab a prepopulated VM you should find a download link 
 
 ### Base setup
 
-A vanilla Ubuntu Precise 64 base image from [vagrantup.com](http://files.vagrantup.com/precise64.box) with Puppet management.
+* A vanilla Ubuntu Precise 64 base image from [vagrantup.com](http://vagrantup.com)
+* Puppet integration for managing users and passwords
 
 ### Data
 
@@ -65,7 +66,7 @@ When it's done, you're ready to talk Norx.
 ``vagrant up``
 
 
-#### Reloading the VM with a new configuration:
+#### Rebooting the VM with a new Vagrant configuration
 
 ``vagrant reload``
 
