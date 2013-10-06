@@ -110,16 +110,6 @@ fi
 
 if [ ! -f "$hidden_dir/.done_dataseed" ]; then
   echo  "Seeding map data. This will take a very long time!"
-  echo "    * Generating and activating humongous!! (30 GB) swapfile needed to parse BIG GeoJSON files. Some of these JSON files are as big as 12 GB!"
-
-  # Create swapfile of 30GB with block size 1MB
-  dd if=/dev/zero of=/swapfile bs=1024 count=31457280
-
-  # Set up the swap file
-  mkswap /swapfile
-
-  # Enable swap file immediately
-  swapon /swapfile
 
   # Prepare to cook map data
   echo "    * Fetching seed code from GitHub"
@@ -135,9 +125,6 @@ if [ ! -f "$hidden_dir/.done_dataseed" ]; then
 
   sudo -u $name ./seed.sh $name $name bengler
 
-  echo "    * Deactivating and removing humongous swap file"
-  swapoff /swapfile
-  rm -rf /swapfile
   if [  -f '/home/$name/data' ]; then
     touch "$hidden_dir/.done_dataseed"
     echo "   * Seed done!"
