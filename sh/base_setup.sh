@@ -123,7 +123,7 @@ if [ ! -f "$hidden_dir/.done_dataseed" ]; then
 
   echo "    * Starting seed. Please be patient...this is going to take a long time!"
 
-  sudo -u $name ./seed.sh $name $name bengler
+  ./seed.sh $name $name bengler
 
   if [  -f '/home/$name/data' ]; then
     touch "$hidden_dir/.done_dataseed"
