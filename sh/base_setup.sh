@@ -57,7 +57,7 @@ if [ ! -f "$hidden_dir/.done_packages" ]; then
   apt-get -y install nodejs
 
   # Install needed Python packages
-  apt-get install -y libboost-python-dev python-pip python-dev
+  apt-get install -y libboost-python-dev python-dev
 
   # Install python modules
   pip install pillow TileStache pyproj
